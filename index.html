@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Para Ti</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #0a0a0f;
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+        }
+
+        .stars {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            animation: blink 2s infinite alternate;
+            opacity: 0.8;
+        }
+
+        @keyframes blink {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 85%;
+            max-width: 500px;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            animation-delay: 1s;
+        }
+
+        .btn {
+            margin-top: 30px;
+            display: inline-block;
+            padding: 12px 30px;
+            background: #7f5cff;
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1rem;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+            animation-delay: 2s;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #a48cff;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- estrellas random -->
+    <script>
+        for (let i = 0; i < 120; i++) {
+            let star = document.createElement("div");
+            star.classList.add("stars");
+            star.style.top = Math.random() * 100 + "vh";
+            star.style.left = Math.random() * 100 + "vw";
+            star.style.animationDelay = Math.random() * 2 + "s";
+            document.body.appendChild(star);
+        }
+    </script>
+
+    <div class="container">
+        <h1>Hey… tengo algo para ti.</h1>
+        <p>
+            No es un poema, no es una carta perfecta…  
+            es solo un pequeño portal que hice especialmente para ti.  
+            Porque últimamente, sin saber cómo, apareces en mi mente más seguido.
+        </p>
+
+        <p style="margin-top:15px;">
+            Y si estoy siendo sincero… me gustas.  
+            Más de lo que tenía planeado.
+        </p>
+
+        <a class="btn" href="javascript:void(0)" onclick="mensaje()">Tócame</a>
+    </div>
+
+    <script>
+        function mensaje() {
+            alert("Ok… ya descubriste mi forma favorita de decirte que me encantas.");
+        }
+    </script>
+
+</body>
+</html>
