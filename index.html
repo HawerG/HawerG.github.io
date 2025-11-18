@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Para mi Gordito 💙</title>
+    <style>
+        :root{
+            --bg:#0b0b10;
+            --card:#0f1320;
+            --accent:#7f5cff;
+            --text:#e9e9f0;
+        }
+        *{box-sizing:border-box}
+        body{
+            margin:0;
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:linear-gradient(180deg,var(--bg) 0%, #071025 100%);
+            font-family: Inter, Arial, sans-serif;
+            color:var(--text);
+            padding:20px;
+        }
+        .card{
+            width:100%;
+            max-width:620px;
+            background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+            border-radius:16px;
+            padding:30px;
+            box-shadow: 0 8px 30px rgba(5,6,10,0.6);
+            border: 1px solid rgba(127,92,255,0.08);
+            text-align:center;
+        }
+        h1{ margin:0 0 10px 0; font-weight:600; font-size:1.8rem; }
+        p.lead{ margin:0 0 18px 0; color:#cfcff6; opacity:0.95; }
+        .controls{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:10px; }
+        select{ padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.06); background:transparent; color:var(--text); min-width:160px; }
+        button{
+            background:var(--accent);
+            color:#fff;
+            border:0;
+            padding:10px 16px;
+            border-radius:10px;
+            cursor:pointer;
+            font-weight:600;
+            box-shadow:0 6px 18px rgba(127,92,255,0.12);
+        }
+        .poem{
+            margin-top:22px;
+            background: rgba(255,255,255,0.02);
+            padding:18px;
+            border-radius:12px;
+            text-align:left;
+            line-height:1.6;
+            font-size:1.05rem;
+            color:#f3f3fb;
+            min-height:120px;
+            opacity:0;
+            transform:translateY(8px);
+            transition: all 450ms ease;
+        }
+        .poem.show{ opacity:1; transform:none; }
+        .small{ font-size:0.86rem; color:#bfc0d8; margin-top:10px; }
+        .credit{ margin-top:14px; opacity:0.6; font-size:0.82rem; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Un poema para ti</h1>
+        <p class="lead">Elige tres cosas y te mostraré un poema hecho para Gordito 💙</p>
+
+        <div class="controls">
+            <select id="opt1">
+                <option value="">Elige...</option>
+                <option value="noche">La noche 🌙</option>
+                <option value="dia">El día ☀️</option>
+            </select>
+
+            <select id="opt2">
+                <option value="">Elige...</option>
+                <option value="besos">Besos 😘</option>
+                <option value="abrazos">Abrazos 🤍</option>
+            </select>
+
+            <select id="opt3">
+                <option value="">Elige...</option>
+                <option value="miradas">Miradas intensas 👀</option>
+                <option value="risas">Risas suaves 😌</option>
+            </select>
+        </div>
+
+        <div style="margin-top:16px;">
+            <button onclick="generar()">Ver poema</button>
+        </div>
+
+        <div id="poem" class="poem" aria-live="polite"></div>
+
+        <div class="small">Pista: si no aparece, asegúrate de elegir las 3 opciones.</div>
+        <div class="credit">Hecho con cariño — Hawer ✨</div>
+    </div>
+
+    <script>
+        function generar(){
+            const o1 = document.getElementById('opt1').value;
+            const o2 = document.getElementById('opt2').value;
+            const o3 = document.getElementById('opt3').value;
+            if(!o1 || !o2 || !o3){
+                alert('Elige las tres opciones primero, sí? 💙');
+                return;
+            }
+
+            let verso1 = o1 === 'noche'
+                ? 'La noche me recuerda a ti, y a todo lo que callo.'
+                : 'La luz del día me trae tu risa, clara y urgente.';
+
+            let verso2 = o2 === 'besos'
+                ? 'Quizá por esos besos que imagino cuando me pierdo en ti,'
+                : 'o por esos abrazos que aún no me cansan en el pensamiento,';
+
+            let verso3 = o3 === 'miradas'
+                ? 'y por las miradas que se roban palabras entre nosotros.'
+                : 'y por tus risas que desarman hasta los silencios.';
+
+            const poemaCompleto = `
+                ${verso1}<br>
+                ${verso2}<br>
+                ${verso3}<br><br>
+                Gordito… si supieras lo que provocas en mí,<br>
+                entenderías por qué últimamente mi mente siempre te busca. 💙<br><br>
+                Y sí… me gustas. Mucho más de lo que debería admitir.
+            `;
+
+            const div = document.getElementById('poem');
+            div.innerHTML = poemaCompleto;
+            div.classList.add('show');
+            // suave scroll para mobile
+            setTimeout(()=> div.scrollIntoView({behavior:'smooth', block:'center'}), 120);
+        }
+    </script>
+</body>
+</html>
